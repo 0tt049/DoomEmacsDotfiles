@@ -1,0 +1,150 @@
+* Index :toc:
+- [[#this-project-goal][This project goal]]
+- [[#breaking-changes-only-for-who-installed-before-may-29---2022][Breaking Changes (Only for who installed before may 29 - 2022)]]
+- [[#features][Features]]
+- [[#prerequisites][Prerequisites]]
+- [[#automatic-installation][Automatic Installation]]
+- [[#manual-instalation][Manual Instalation]]
+- [[#after-install][After Install]]
+- [[#how-to-use-this-config--keybindings][How to Use this config + Keybindings]]
+- [[#customizing][Customizing]]
+- [[#upgrading][Upgrading]]
+- [[#video-showcase--guide][Video Showcase + Guide]]
+- [[#some-features][Some Features]]
+- [[#getting-help][Getting help]]
+- [[#want-to-learn-how-to-use-advanced-commands-from-this-config-inside-emacs][Want to learn how to use advanced commands from this config inside emacs?]]
+- [[#installing-emacs-on-ubuntu][Installing Emacs on Ubuntu]]
+- [[#installing-emacs-on-mac][Installing Emacs on Mac]]
+- [[#what-i-need-to-know-to-start-using-][What i need to know to start using ?]]
+- [[#buy-me-a-coffee][Buy me a coffee]]
+
+# Disclaimer
+
+I'm being work on a neovim configuration, you can check here: https://github.com/otavioschwanck/mood-nvim
+
+This neovim configuration is based on Doom Emacs On Rails.
+
+If you still want to use this emacs configuration, feel free, it's working perfectly.
+
+* This project goal
+
+This project goal is bring emacs and its powerful features to people that don't want to lose time searching and configuring stuff.  The doom-emacs-on-rails config is ready to use and easy to customize.  The user can change the user-settings.el the way he wants, receiving a lot of tips.  Doom Emacs + this dotfiles is the fusion of power and simplicity.
+
+To access your personal settings, just press SPC f m.
+
+The user can print a manual accessing [[Emacs Handbook.pdf]], also has a video demonstration with some cool commands below.
+
+* Breaking Changes (Only for who installed before may 29 - 2022)
+Some refactoring was done and the user settings files has changed.  Please use migrate your config to =user-settings.el= to =user/config.el= .
+
+The reason of this refact is to improve (a lot) the performance and stability.
+
+* Features
++ Made for Ruby on rails
++ Works with rbenv or docker
++ Works with rspec or minitest
++ Javascript support out of box
++ Cool stuff for Ruby Refactoring
++ Advance autocomplete and snippets management
++ Code Diagnostics
++ Best git client integrated (Magit)
++ Vim Keybindings
+
+* Prerequisites
+ - Git 2.23+
+ - Emacs 27 with GNUTLS support
+ - ripgrep 11.0+ =(sudo apt install ripgrep)=
+ - GNU find
+ - OPTIONAL fd 7.3.0+ (improves file indexing performance for some commands) =(sudo apt install find-fd)= (good for large projects)
+ - typescript-language-server
+ - solargraph
+ - rbenv
+
+* Automatic Installation
+We created a bash script to make your life easier and install Doom Emacs automatically.
+Just run the below command in the terminal on either mac or linux, choose what you want to install and have fun!
+
+#+begin_src sh
+bash <(curl -Ls https://raw.githubusercontent.com/otavioschwanck/doom-emacs-on-rails/master/auto-installer.sh)
+#+end_src
+```
+* Manual Instalation
+#+BEGIN_SRC shell
+# Install my config
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+git clone https://github.com/otavioschwanck/doom_emacs_dotfiles.git ~/.doom.d
+~/.emacs.d/bin/doom install
+
+# if you use Ubuntu
+sudo apt install fd-find ripgrep libtool-bin cmake tidy
+
+# If you use Mac
+brew install fd ripgrep
+
+# Install dependencies for LSP
+npm install -g vscode-css-languageserver-bin vscode-html-languageserver-bin typescript-language-server @tailwindcss/language-server@0.0.4 stylelint js-beautify import-js
+
+gem install solargraph
+#+END_SRC
+
+* After Install
+Open your personal configuration with =SPC f m= and read the file.  I really recommend to read all comments on file, this file contains a lot of tips for improve your workflow.
+
+* How to Use this config + Keybindings
+I've write an emacs handbook to use this config.  You can access the text version using ~SPC f h~ inside emacs.
+
+The text version is here: [[file:docs/handbook.org][emacs-handbook.org]]
+
+* Customizing
+~SPC f m~ - Your personal settings
+~SPC f i~ - Where you can add your own modules
+~SPC f I~ - Where you can add your own packages
+
+See more on the handbook (~SPC f h~)
+
+* Upgrading
+To upgrade, just press M-x and search for =upgrade-doom-emacs-on-rails=
+
+* Video Showcase + Guide
+I made a video showcase with the principal commands (See description all the video highlights)
+
+https://www.youtube.com/watch?v=5H1-Qc9uD5A
+
+* Some Features
+#+caption: Refactoring
+[[refactoring in emacs.gif]]
+
+#+caption: Method Creating at point
+[[method at point.gif]]
+
+* Getting help
+For getting help, access doom official github page: https://github.com/hlissner/doom-emacs
+
+* Want to learn how to use advanced commands from this config inside emacs?
+Just follow this gif:  https://imgur.com/J3KzrPK
+
+* Installing Emacs on Ubuntu
+Just run `sudo snap install emacs --classic`
+
+* Installing Emacs on Mac
+Just install from https://emacsformacosx.com/
+
+Tip:  To work, go to applications, right click and then, open.
+
+* What i need to know to start using ?
+I really recommend you to learn the basics of vim first, choose one:
+
++ [[https://www.udemy.com/course/vim-commands-cheat-sheet/][Vim Udemy Course]] (non-free) (for vim) (3h course) (very good course, i did this) (Very Complete!)
++ [[https://www.youtube.com/watch?v=ER5JYFKkYDg][Vim Tutorial pt 1]] and [[https://www.youtube.com/watch?v=tExTz7GnpdQ][Vim Tutorial pt 2]] (free) (basic)
++ [[https://www.youtube.com/watch?v=H3o4l4GVLW0&list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R][Vim Youtube Course - 6 Videos, ignore the 6]] (free) (basic-intermediary)
+
+After that, you can see the [[https://www.youtube.com/watch?v=rCMh7srOqvw&list=PLhXZp00uXBk4np17N39WvB80zgxlZfVwj][Doom Casts]] to learn the basics of doom emacs (optional)
+Don't forget to see the =evil cheatsheet pt-BR.png= on the root of this repository!
+
+Don'tt forget the [[https://discord.gg/qvGgnVx][Doom Emacs Discord Server]], is always full of people that always helps!
+You can get help of any command on doom with SPC h p (function) of SPC h k + keybinding = (to see the options, etc.)
+
+* Buy me a coffee
+
+If you want to support my work, please, buy me a coffee:
+https://www.buymeacoffee.com/otavioschwanck
