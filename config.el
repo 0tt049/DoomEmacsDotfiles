@@ -23,4 +23,5 @@
 (global-visual-line-mode t)
 (global-visual-fill-column-mode t)
 (setq visual-fill-column-width 80)
+(setq-default visual-fill-column-center-text t)
 (adaptive-wrap-prefix-mode t)

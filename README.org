@@ -1,0 +1,10 @@
+#+title:     Readme
+#+author:    Otavio Coelho
+#+email:     otavio.gmcoelho@gmail.com
+
+* My DoomEmacs configuration files
+**  Current uses are:
+*** Ruby on Rails
+*** Web development
+*** Project Management
+*** Computer Graphics (?)

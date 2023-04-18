@@ -21,7 +21,6 @@
        (popup +defaults)
        unicode
        vc-gutter
-       vi-tilde-fringe
        workspaces
        zen
 
