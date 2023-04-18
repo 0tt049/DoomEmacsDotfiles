@@ -10,9 +10,3 @@
 (package! ruby-refactor :pin "e6b7125878a08518bffec6942df0c606f748e9ee")
 
 (package! string-inflection :pin "fd7926ac17293e9124b31f706a4e8f38f6a9b855")
-
-(if (file-exists-p (expand-file-name "user/packages.el" doom-private-dir))
-    (load (expand-file-name "user/packages.el" doom-private-dir))
-  (progn
-    (shell-command "cp ~/.doom.d/user/examples/packages.el ~/.doom.d/user/packages.el")
-    (load (expand-file-name "user/packages.el" doom-private-dir))))

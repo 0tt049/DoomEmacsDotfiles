@@ -2,23 +2,12 @@
 
 (map! :after vterm :map vterm-mode-map :ni "C-l" #'vterm-clear)
 
-(defun better-vterm-paste ()
-  (interactive)
-  (+vterm-send-string (substring-no-properties (current-kill 0)) nil))
-
-(defun better-vterm-clean ()
-  (interactive)
-  (vterm-send-C-c)
-  (evil-insert 1))
-
 (map! :after vterm :map vterm-mode-map :n "P" #'better-vterm-paste-before)
 (map! :after vterm :map vterm-mode-map :n "p" #'better-vterm-paste)
-(map! :after vterm :map vterm-mode-map :ni "M-p" #'vterm-send-up)
-(map! :after vterm :map vterm-mode-map :ni "M-n" #'vterm-send-down)
+(map! :after vterm :map vterm-mode-map :ni "M-p" #'vterm--self-insert)
+(map! :after vterm :map vterm-mode-map :ni "M-n" #'vterm-self-insert)
 (map! :after vterm :map vterm-mode-map :i "C-v" #'better-vterm-paste)
 (map! :after vterm :map vterm-mode-map :i "M-v" #'better-vterm-paste)
-(map! :after vterm :mode vterm-mode :n "C-c" #'better-vterm-clean)
-
 (map! :leader :desc "Terminal" "v" #'+vterm/toggle)
 
 (defun +vterm-toggle--create-terms ()
@@ -40,7 +29,8 @@
   (push command +vterm-layouts))
 
 (defun +add-command-to-term-list (command &optional key)
-  "Execute the command with +vterm. COMMAND = command to execute. key = Key to use with SPC j."
+  "Execute the command with +vterm. COMMAND = command to execute.
+key = Key to use with SPC j."
   (when key
     (let ((mapping (concat "j" key))
           (command-to-run (cdr command))

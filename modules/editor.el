@@ -58,10 +58,6 @@
 ;; Buffer previous and next
 (map! :ni "C-h" #'previous-buffer)
 (map! :ni "C-l" #'next-buffer)
-;;
-;; Buffer previous and next
-(map! :ni "C-," #'previous-buffer)
-(map! :ni "C-;" #'next-buffer)
 
 ;; Drag Stuff
 (map! :v "K" #'drag-stuff-up)
@@ -93,10 +89,6 @@
 (after! evil-multiedit
   (map! :map iedit-occurrence-keymap-default
         "M-D" nil))
-
-;; Mac improvement (cmd = meta)
-(setq mac-command-modifier 'meta)
-(setq ns-function-modifier 'control)
 
 ;; Fix yaml lint
 (setq flycheck-yamllintrc ".yamllint.yml")
@@ -139,14 +131,6 @@
   (map! :map tide-mode-map :localleader "R" #'tide-rename-symbol)
   (map! :map tide-mode-map :localleader "F" #'tide-rename-file))
 
-(after! evil-org
-  (map! :map evil-org-mode-map :niv "M-k" #'evil-window-up)
-  (map! :map evil-org-mode-map :niv "M-j" #'evil-window-down)
-  (map! :map evil-org-mode-map :niv "M-h" #'evil-window-left)
-  (map! :map evil-org-mode-map :niv "M-l" #'evil-window-right)
-  (map! :map evil-org-mode-map :niv "C-M-k" #'org-metaup)
-  (map! :map evil-org-mode-map :niv "C-M-j" #'org-metadown))
-
 (map! "M-o" #'evil-window-next)
 (map! :n ";" #'evil-window-next)
 
@@ -155,57 +139,3 @@
 ;; Emmet
 (map! :after web-mode :map web-mode-map :i "M-e" #'emmet-expand-yas)
 (map! :after js2-mode :map rjsx-mode-map :i "M-e" #'emmet-expand-yas)
-
-(defun otavio/swap-arg-forward ()
-  (interactive)
-  (evil-exchange (nth 0 (evil-inner-arg)) (nth 1 (evil-inner-arg)))
-  (evil-forward-arg 1)
-  (evil-exchange (nth 0 (evil-inner-arg)) (nth 1 (evil-inner-arg))))
-
-(defun otavio/swap-arg-backward ()
-  (interactive)
-  (evil-exchange (nth 0 (evil-inner-arg)) (nth 1 (evil-inner-arg)))
-  (evil-backward-arg 1)
-  (evil-exchange (nth 0 (evil-inner-arg)) (nth 1 (evil-inner-arg))))
-
-(map! :n "gl" #'otavio/swap-arg-forward)
-(map! :n "gh" #'otavio/swap-arg-backward)
-(map! :nv "C-j" "C-M-n")
-(map! :nv "C-k" "C-M-p")
-
-;; Multiline
-(after! evil
-  (define-key evil-normal-state-map (kbd "g S") #'multi-line)
-  (define-key evil-normal-state-map (kbd "g J") #'multi-line-single-line))
-
-(defvar debugger-command "require 'pry'; binding.pry")
-(defvar pry-show-helper nil)
-
-(defun otavio/remove-all-debuggers ()
-  (interactive)
-  (setq CURRENT_LINE (line-number-at-pos))
-  (setq DELETATIONS 0)
-  (goto-char (point-min))
-  (while (search-forward debugger-command (point-max) t)
-    (beginning-of-line)
-    (kill-line 1)
-    (setq DELETATIONS (1+ DELETATIONS)))
-  (goto-char (point-min))
-  (forward-line (- (1- CURRENT_LINE) DELETATIONS))
-  (save-buffer))
-
-(defun otavio/insert-debugger ()
-  (interactive)
-  (setq HELPER (if pry-show-helper " # next; step; break; break 14;break FooBar#func;break --help;" ""))
-  (setq REAL_COMMAND (if (eq major-mode 'ruby-mode) (concat debugger-command HELPER) (concat "<% " debugger-command HELPER " %>")))
-  (back-to-indentation)
-  (newline-and-indent)
-  (forward-line -1)
-  (insert REAL_COMMAND)
-  (indent-according-to-mode)
-  (save-buffer))
-
-(map! :after ruby-mode :map ruby-mode-map :desc "Insert debugger" :leader "d" 'otavio/insert-debugger)
-(map! :after ruby-mode :map ruby-mode-map :desc "Remove All Debuggers" :leader "D" 'otavio/remove-all-debuggers)
-(map! :after web-mode :mode web-mode-map :desc "Insert Debugger" :leader "d" 'otavio/insert-debugger)
-(map! :after web-mode :mode web-mode-map :desc "Remove All Debuggers" :leader "D" 'otavio/remove-all-debuggers)

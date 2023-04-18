@@ -1,6 +1,5 @@
 (defun load-libraries ()
-  (load (expand-file-name "modules/libraries/rubocop.el" doom-private-dir))
-  (load (expand-file-name "modules/libraries/http.el" doom-private-dir))
+  (load (expand-file-name "modules/libraries/rubocop.el" doom-user-dir))
   (map! :leader :desc "Rails" "r" #'projectile-rails-command-map)
   (require 'projectile-rails))
 
@@ -205,11 +204,6 @@
   (map! :map ruby-mode-map "C-c C-i" 'rails-i18n-insert-no-cache) ;; Search refresh cache on ruby modee
   (map! :map web-mode-map "C-c i" 'rails-i18n-insert-with-cache) ;; Search with cache on web-mode
   (map! :map web-mode-map "C-c C-i" 'rails-i18n-insert-no-cache)) ;; Search refresh cache web-mode
-
-;; HTTP Plugin
-(after! ruby-mode
-  (define-key ruby-mode-map (kbd "C-c s") #'rails-http-statuses-insert-symbol)
-  (define-key ruby-mode-map (kbd "C-c S") #'rails-http-statuses-insert-code))
 
 ;; Improve Inf Ruby
 (after! inf-ruby

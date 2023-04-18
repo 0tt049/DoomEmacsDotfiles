@@ -5,7 +5,7 @@
 
 (after! company
   (setq company-dabbrev-downcase nil)
-  (setq company-show-numbers t)
+  (setq company-show-quick-access t)
   (setq company-idle-delay 0)
 
   (defun remove-company-duplicates (candidates)
@@ -72,6 +72,6 @@
   (setq company-idle-delay 0))
 
 (after! yasnippet
-    (add-to-list 'yas-snippet-dirs (concat doom-private-dir "user/snippets/"))
-    (yas-load-directory (concat doom-private-dir "snippets/"))
-    (yas-load-directory (concat doom-private-dir "user/snippets/")))
+    (add-to-list 'yas-snippet-dirs (concat doom-user-dir "user/snippets/"))
+    (yas-load-directory (concat doom-user-dir "snippets/"))
+    (yas-load-directory (concat doom-user-dir "user/snippets/")))
