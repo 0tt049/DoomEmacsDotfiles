@@ -10,3 +10,11 @@
 (package! ruby-refactor :pin "e6b7125878a08518bffec6942df0c606f748e9ee")
 
 (package! string-inflection :pin "fd7926ac17293e9124b31f706a4e8f38f6a9b855")
+
+(package! asymptote
+  :recipe (:host github :repo "vectorgraphics/asymptote"))
+
+(package! leetcode)
+(package! org-kanban)
+(package! theme-magic)
+(package! devdocs)

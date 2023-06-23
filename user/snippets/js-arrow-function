@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Arrow Func
+# uuid:
+# key: arw
+# condition: t
+# --
+const $1 = () => {}

@@ -13,7 +13,6 @@
        hl-todo
        hydra
        indent-guides
-       ligatures
        modeline
        nav-flash
        neotree
@@ -44,11 +43,12 @@
        vterm
 
        :checkers
-       (spell +flyspell)
+       (spell +aspell +flyspell)
        syntax
 
        :tools
        biblio
+       direnv
        (eval +overlay)
        lookup
        lsp
@@ -56,6 +56,7 @@
        make
        pdf
        rgb
+       tree-sitter
        taskrunner
 
        :os
@@ -63,21 +64,25 @@
 
        :lang
        (cc +lsp)
+       (csharp +dotnet +lsp +tree-sitter +unity)
        emacs-lisp
        (go +lsp +tree-sitter)
        (javascript +lsp +tree-sitter)
+       (java +lsp +tree-sitter)
        (json +lsp)
-       latex
+       (latex +cdlatex +fold +lsp)
+       (haskell +lsp +tree-sitter)
        lua
-       markdown
-       (org +hugo +journal +pandoc +present +pretty +roam)
-       (python +lsp +pyright +pyenv)
+       (markdown +grip)
+       (org +hugo +journal +pandoc +present +pretty)
+       (python +lsp +tree-sitter +pyenv)
        qt
-       (ruby +rails +lsp +rbenv)
-       rust
+       (ruby +rails +lsp +rbenv +tree-sitter)
+       (rust +lsp +tree-sitter)
        sh
        (web +lsp +tree-sitter)
        (yaml +lsp)
+       (faust)
 
        :email
 
